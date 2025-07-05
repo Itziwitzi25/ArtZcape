@@ -1,141 +1,57 @@
+# Galería Interactiva de Pinturas
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Galería de Pinturas - Test</title>
+Este proyecto es una galería web minimalista con estética de museo, donde los usuarios pueden explorar 8 obras seleccionadas de **Frida Kahlo** y **Jean-Michel Basquiat**. Al llegar a la última pintura, se desbloquea un botón que redirige a un formulario de evaluación.
 
-<!-- Fuente tipo museo elegante -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+### 🎨 Obras en la galería:
+- **Frida Kahlo:**
+  - Sin Esperanza
+  - Retrato de Tehuana
+  - Las dos Fridas
+  - El venado herido
+- **Jean-Michel Basquiat:**
+  - Skull
+  - Hollywood Africans
+  - King Charles I
+  - Untitled (1981)
 
-<style>
-  body {
-    background-image: url('https://berlinischegalerie.de/assets/_processed_/7/d/csm_BG-0210_0263_6448f65a7f.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    font-family: 'Playfair Display', serif;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-  }
+---
 
-  #gallery {
-    max-width: 650px;
-    margin: 30px auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.85);
-    border: 12px solid #7f6750;
-    box-shadow: 0 0 30px rgba(0,0,0,0.6);
-    border-radius: 12px;
-  }
+## 💡 Características
+- Navegación con botones "Anterior" y "Siguiente".
+- Fondo con textura de galería real (*Berlinische Galerie*).
+- Diseño elegante con marco tipo madera y tipografía de museo.
+- Botón de acceso al cuestionario disponible solo al ver todas las pinturas.
 
-  #painting {
-    border: 12px solid #d2b48c;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    max-height: 450px;
-    width: 100%;
-    object-fit: contain;
-  }
+---
 
-  button {
-    padding: 10px 20px;
-    margin: 10px 15px;
-    font-size: 1rem;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background: #6c5ce7;
-    color: white;
-    transition: background 0.3s;
-    font-family: 'Playfair Display', serif;
-  }
+## 🔗 Cuestionario de Evaluación
+Una vez vistas las 8 pinturas, aparecerá el botón para abrir el formulario:
 
-  button:hover:not(:disabled) {
-    background: #341f97;
-  }
+👉 [https://forms.gle/ZMU1saKhNbSiodsV7](https://forms.gle/ZMU1saKhNbSiodsV7)
 
-  button:disabled {
-    background: #bbb;
-    cursor: default;
-  }
+---
 
-  #finishBtn {
-    display: none;
-    margin-top: 20px;
-    background: #00b894;
-  }
-</style>
-</head>
-<body>
+## 🛠️ ¿Cómo usar este sitio?
 
-<h1>Galería de Pinturas</h1>
-<div id="gallery">
-  <img id="painting" src="" alt="Pintura" />
-  <div>
-    <button id="prevBtn">Anterior</button>
-    <button id="nextBtn">Siguiente</button>
-  </div>
-  <button id="finishBtn">Ir al cuestionario</button>
-</div>
+1. Clona o descarga este repositorio.
+2. Abre el archivo `index.html` en tu navegador.
+3. También puedes subirlo como sitio web a GitHub Pages (ver abajo).
 
-<script>
-  const paintings = [
- { title: "Las dos Fridas", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Las_dos_Fridas.jpg/800px-Las_dos_Fridas.jpg" },
-     { title: "Sin Esperanza", src: "https://www.kahlo.org/Without%20Hope%20Frida%20Kahlo.jpg" },
-    { title: "Retrato de Tehuana", src: "https://artikabooks.com/wp-content/uploads/2021/11/3-Autorretrato-de-tehuana.jpg" },
-    { title: "Skull", src: "https://upload.wikimedia.org/wikipedia/en/1/11/Untitled-Head-Jean-Michel_Basquiat-1981.jpg" },
-    { title: "Hollywood Africans", src: "https://upload.wikimedia.org/wikipedia/en/5/5f/Hollywood-Africans-1983.jpg" },
-    { title: "King Charles I", src: "https://upload.wikimedia.org/wikipedia/en/a/af/Jean-Michel_Basquiat_King_Charles_I.jpg" },
-    { title: "Untitled (1981)", src: "https://www.basquiat.com/wp-content/uploads/2020/06/1981_Untitled.jpg" },
-   
+---
 
-  let currentIndex = 0;
-  const paintingEl = document.getElementById('painting');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const finishBtn = document.getElementById('finishBtn');
+## 🚀 Publicar en GitHub Pages
 
-  function showPainting(index) {
-    const p = paintings[index];
-    paintingEl.src = p.src;
-    paintingEl.alt = p.title;
+### 1. Crear repositorio en GitHub
+- Ve a [github.com](https://github.com), crea un nuevo repositorio (por ejemplo: `galeria-pinturas`).
 
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index === paintings.length - 1;
+### 2. Subir tus archivos
+- Sube los archivos `index.html` y `README.md` a tu repositorio.
+- O usa Git en terminal:
 
-    // Mostrar botón de cuestionario al llegar a la última pintura
-    if (index === paintings.length - 1) {
-      finishBtn.style.display = 'inline-block';
-    } else {
-      finishBtn.style.display = 'none';
-    }
-  }
-
-  prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      showPainting(currentIndex);
-    }
-  });
-
-  nextBtn.addEventListener('click', () => {
-    if (currentIndex < paintings.length - 1) {
-      currentIndex++;
-      showPainting(currentIndex);
-    }
-  });
-
-  finishBtn.addEventListener('click', () => {
-    window.open('https://docs.google.com/forms/d/e/1FAIpQLSefW9OmBse5DURrh0lKmaWML3SONmCRgEeJou0DsU4IWedp-Q/viewform?usp=header', '_blank');
-  });
-
-  // Inicializar galería
-  showPainting(currentIndex);
-</script>
-
-</body>
-</html>
+```bash
+git clone https://github.com/tu-usuario/galeria-pinturas.git
+cd galeria-pinturas
+# Agrega tus archivos dentro de esta carpeta
+git add .
+git commit -m "Versión inicial"
+git push origin main
